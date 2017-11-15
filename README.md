@@ -4,7 +4,7 @@
 
 ## Preparation
 - `/proto/*.proto` files
-- ``
+- `Convox` registration
 
 ## Run locally
 - `protodoc-server start`
