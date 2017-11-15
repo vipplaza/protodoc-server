@@ -1,11 +1,24 @@
+up(){
+  touch Dockerfile
+  mkdir -p ./node_modules/protodoc-server/doc
+  rm -r ./node_modules/protodoc-server/proto
+  cp -rf ./proto node_modules/protodoc-server
+}
+down(){
+  c=$(wc -c <Dockerfile)
+  if [ $c -lt '1' ]; then
+    rm Dockerfile
+  fi
+}
+
 if [ $1 = 'start' ];then
-  rm -r node_modules/protodoc-server/proto
-  cp -rf ./proto node_modules/protodoc-server
+  up
   convox start -f node_modules/protodoc-server/docker-compose.yml
+  down
 elif [ $2 = 'deploy' ];then
-  rm -r node_modules/protodoc-server/proto
-  cp -rf ./proto node_modules/protodoc-server
+  up
   convox deploy -f node_modules/protodoc-server/docker-compose.yml
+  down
 else
 echo ' '
 echo 'Usage: protodoc-server [commands]'
