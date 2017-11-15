@@ -1,0 +1,39 @@
+{
+  "name": "hosted-protobuf",
+  "version": "1.0.0",
+  "description": "hapi-swagger-like protobuf documentation server & protobuf output endpoint. (For avoiding git-submodule complexity and use wget to share output)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vipplaza/hosted-protobuf"
+  },
+  "scripts": {
+    "build:doc": "protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=/app/protoc-gen-doc/bin/protoc-gen-doc",
+    "build:js": "protoc --js_out=library=myproto_libs,binary:. /proto",
+    "build:php": "protoc --php_out=out_dir /proto",
+    "start": "nodemon server.js"
+  },
+  "bin": {
+    "hosted-protobuf": "bin/entrypoint.sh"
+  },
+  "author": "shogochiai <shogo1104@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/client": "^3.14.1",
+    "async-child-process": "^1.1.1",
+    "await-fs": "^1.0.0",
+    "axios": "^0.17.0",
+    "babel-project-relative-import": "^2.0.1",
+    "commander": "^2.11.0",
+    "exec-promise": "^0.7.0",
+    "handlebars": "^4.0.11",
+    "hapi": "^17.0.0",
+    "node-yaml": "^3.1.1",
+    "nodemon": "^1.12.1",
+    "vision": "^5.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
