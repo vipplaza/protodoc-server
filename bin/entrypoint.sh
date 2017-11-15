@@ -6,16 +6,16 @@ up(){
 }
 down(){
   c=$(wc -c <Dockerfile)
-  if [ $c -lt '1' ]; then
+  if [[ $c -lt '1' ]]; then
     rm Dockerfile
   fi
 }
 
-if [ $1 = 'start' ];then
+if [[ $1 = 'start' ]];then
   up
   convox start -f node_modules/protodoc-server/docker-compose.yml
   down
-elif [ $2 = 'deploy' ];then
+elif [[ $2 = 'deploy' ]];then
   up
   convox deploy -f node_modules/protodoc-server/docker-compose.yml
   down
