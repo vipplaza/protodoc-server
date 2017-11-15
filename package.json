@@ -8,7 +8,7 @@
     "url": "https://github.com/vipplaza/hosted-protobuf"
   },
   "scripts": {
-    "build:doc": "protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=/app/protoc-gen-doc/bin/protoc-gen-doc",
+    "build:doc": "protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=./bin/protoc-gen-doc",
     "build:js": "protoc --js_out=library=myproto_libs,binary:. /proto",
     "build:php": "protoc --php_out=out_dir /proto",
     "start": "nodemon server.js"

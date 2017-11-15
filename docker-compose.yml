@@ -9,7 +9,7 @@ services:
     ports:
       - 80:3000
     labels:
-      - convox.start.shift=2
+      - convox.start.shift=4
       - convox.balancer=true
       - convox.health.timeout=30
       - convox.port.443.protocol=https

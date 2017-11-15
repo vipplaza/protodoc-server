@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:9.1.0
 LABEL maintainer="shogochiai <shogo1104@gmail.com>" protoc_version="3.3.0"
 
 ####################
@@ -8,7 +8,7 @@ ADD https://github.com/google/protobuf/releases/download/v3.3.0/protoc-3.3.0-lin
 ADD . /app
 WORKDIR /app
 RUN apt-get -q -y update
-RUN apt-get -q -y install unzip curl
+RUN apt-get -q -y install unzip curl sudo git vim golang
 
 ####################
 # protoc
@@ -24,20 +24,20 @@ RUN apt-get -q -y install sudo git vim golang
 RUN git clone https://github.com/pseudomuto/protoc-gen-doc.git
 WORKDIR /app/protoc-gen-doc
 RUN mkdir bin src
-RUN export GOPATH=/app/protoc-gen-doc && curl https://glide.sh/get | sh
-ENV GOPATH=/app/protoc-gen-doc/vendor
+#RUN export GOPATH=/app/protoc-gen-doc && curl https://glide.sh/get | sh
+ENV GOPATH=/app/protoc-gen-doc
 RUN go get -u github.com/pseudomuto/protoc-gen-doc/cmd/...
 RUN bash script/dist.sh
 RUN tar -xvzf dist/protoc-gen-doc-1.0.0.linux-amd64.go1.3.3.tar.gz
-RUN cp dist/protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc bin/protoc-gen-doc
+RUN cp protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc ../bin/protoc-gen-doc
 
 ####################
 # build
 WORKDIR /app
 RUN npm i
 
-# RUN npm run build:js
-# RUN npm run build:php
+#RUN npm run build:js
+#RUN npm run build:php
 RUN npm run build:doc
 
 CMD npm start
