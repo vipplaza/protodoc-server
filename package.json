@@ -1,11 +1,11 @@
 {
-  "name": "hosted-protobuf",
+  "name": "protodoc-server",
   "version": "1.0.0",
   "description": "hapi-swagger-like protobuf documentation server & protobuf output endpoint. (For avoiding git-submodule complexity and use wget to share output)",
-  "main": "index.js",
+  "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vipplaza/hosted-protobuf"
+    "url": "https://github.com/vipplaza/protodoc-server"
   },
   "scripts": {
     "build:doc": "protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=./bin/protoc-gen-doc",
@@ -14,7 +14,7 @@
     "start": "nodemon server.js"
   },
   "bin": {
-    "hosted-protobuf": "bin/entrypoint.sh"
+    "protodoc-server": "bin/entrypoint.sh"
   },
   "author": "shogochiai <shogo1104@gmail.com>",
   "license": "MIT",
