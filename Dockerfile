@@ -35,12 +35,14 @@ RUN cp protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc ../bin/protoc-gen
 ####################
 # build
 WORKDIR /app
-RUN npm i
 RUN mkdir -p doc
+RUN [ ! -f .server.js.remote ] || rm server.js && cp .server.js.remote server.js
+RUN [ ! -f .package.json.remote ] || rm package.json && cp .package.json.remote package.json
 
-RUN protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=./bin/protoc-gen-doc
-#RUN protoc --js_out=library=myproto_libs,binary:. /proto
-#RUN protoc --php_out=out_dir /proto
+RUN npm i
+RUN npm run build:doc
+#RUN npm run build:js
+#RUN npm run build:php
 
-CMD nodemon server.js
+CMD npm start
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
