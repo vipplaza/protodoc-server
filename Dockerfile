@@ -36,7 +36,7 @@ RUN cp protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc ../bin/protoc-gen
 # build
 WORKDIR /app
 RUN npm i
-RUN mkdir doc
+RUN mkdir -p doc
 
 RUN protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=./bin/protoc-gen-doc
 #RUN protoc --js_out=library=myproto_libs,binary:. /proto
