@@ -15,7 +15,7 @@ if [[ $1 = 'start' ]];then
   up
   convox start -f node_modules/protodoc-server/docker-compose.yml
   down
-elif [[ $2 = 'deploy' ]];then
+elif [[ $1 = 'deploy' ]];then
   up
   convox deploy -f node_modules/protodoc-server/docker-compose.yml
   down
