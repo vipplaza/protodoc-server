@@ -1,8 +1,6 @@
 up(){
   touch Dockerfile
   mkdir -p ./node_modules/protodoc-server/doc
-  rm -r ./node_modules/protodoc-server/proto
-  cp -rf ./proto node_modules/protodoc-server
 }
 down(){
   c=$(wc -c <Dockerfile)
@@ -10,14 +8,15 @@ down(){
     rm Dockerfile
   fi
 }
+opt=$2
 
 if [[ $1 = 'start' ]];then
   up
-  convox start -f node_modules/protodoc-server/docker-compose.yml.local
+  convox start -f node_modules/protodoc-server/docker-compose.yml.local $opt
   down
 elif [[ $1 = 'deploy' ]];then
   up
-  convox deploy -f node_modules/protodoc-server/docker-compose.yml.remote
+  convox deploy -f node_modules/protodoc-server/docker-compose.yml.remote $opt
   down
 else
 echo ' '
