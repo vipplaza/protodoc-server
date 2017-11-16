@@ -1,0 +1,15 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./node_modules/protodoc-server/Dockerfile
+    restart: 'always'
+
+    ports:
+      - 80:3000
+    labels:
+      - convox.start.shift=4
+      - convox.balancer=true
+      - convox.health.timeout=30
+      - convox.port.443.protocol=https

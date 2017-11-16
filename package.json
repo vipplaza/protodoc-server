@@ -1,6 +1,6 @@
 {
   "name": "protodoc-server",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "hapi-swagger-like protobuf documentation server & protobuf output endpoint. (For avoiding git-submodule complexity and use wget to share output)",
   "main": "server.js",
   "repository": {

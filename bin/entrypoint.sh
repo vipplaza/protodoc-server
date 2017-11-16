@@ -13,11 +13,11 @@ down(){
 
 if [[ $1 = 'start' ]];then
   up
-  convox start -f node_modules/protodoc-server/docker-compose.yml
+  convox start -f node_modules/protodoc-server/docker-compose.yml.local
   down
 elif [[ $1 = 'deploy' ]];then
   up
-  convox deploy -f node_modules/protodoc-server/docker-compose.yml
+  convox deploy -f node_modules/protodoc-server/docker-compose.yml.remote
   down
 else
 echo ' '
