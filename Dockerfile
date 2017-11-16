@@ -36,8 +36,10 @@ RUN cp protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc ../bin/protoc-gen
 # build
 WORKDIR /app
 RUN mkdir -p doc
-RUN [ ! -f .server.js.remote ] || rm server.js && cp .server.js.remote server.js
-RUN [ ! -f .package.json.remote ] || rm package.json && cp .package.json.remote package.json
+RUN [ ! -f server.js ] || rm server.js
+RUN [ ! -f .server.js.remote ] || cp .server.js.remote server.js
+RUN [ ! -f package.json ] || rm package.json
+RUN [ ! -f .package.json.remote ] || cp .package.json.remote package.json
 
 RUN npm i
 RUN npm run build:doc
