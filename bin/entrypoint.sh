@@ -11,7 +11,7 @@ down(){
 localConf(){
   # convox start's ADD declaration is looking at node_modules/ptorodoc-server
   [[ ! -f node_modules/protodoc-server/proto ]] || rm -r node_modules/protodoc-server/proto
-  cp -r proto node_modules/protodoc-server/proto
+  cp -r proto node_modules/protodoc-server
 }
 remoteConf(){
   # convox deploy's ADD declaration is looking at ./
