@@ -36,9 +36,8 @@ RUN cp protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc ../bin/protoc-gen
 # build
 WORKDIR /app
 RUN mkdir -p doc
-RUN [ ! -f server.js ] || rm server.js
 RUN [ ! -f .server.js.remote ] || cp .server.js.remote server.js
-RUN [ ! -f package.json ] || rm package.json
+RUN pkglen=$(cat package.json | grep '"name": "protodoc-server"' | wc -m | xargs echo -n) && [ "$pkglen" -gt "1" ] 2>/dev/null || rm package.json
 RUN [ ! -f .package.json.remote ] || cp .package.json.remote package.json
 
 RUN npm i
