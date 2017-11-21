@@ -16,6 +16,7 @@ const provision = async () => {
 
     server.views({
         engines: { html: Handlebars },
+        isCached: false,
         relativeTo: __dirname,
         path: 'doc'
     });
