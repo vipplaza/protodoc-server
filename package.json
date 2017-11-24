@@ -1,6 +1,6 @@
 {
   "name": "protodoc-server",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "hapi-swagger-like protobuf documentation server & protobuf output endpoint. (For avoiding git-submodule complexity and use wget to share output)",
   "main": "server.js",
   "repository": {
@@ -9,8 +9,8 @@
   },
   "scripts": {
     "build:doc": "protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=./bin/protoc-gen-doc",
-    "build:js": "protoc --js_out=library=myproto_libs,binary:. /proto",
-    "build:php": "protoc --php_out=out_dir /proto",
+    "build:js": "protoc --js_out=library=./doc/pb/js/pb,binary:. ./proto/*.proto ./proto/**/*.proto && zip doc/js.zip doc/pb/js/pb.js",
+    "build:php": "protoc --php_out=./doc/pb/php ./proto/*.proto ./proto/**/*.proto && zip -r doc/php.zip doc/pb/php",
     "start": "node server.js"
   },
   "bin": {
@@ -28,6 +28,7 @@
     "exec-promise": "^0.7.0",
     "handlebars": "^4.0.11",
     "hapi": "^17.0.0",
+    "inert": "^5.0.1",
     "node-yaml": "^3.1.1",
     "nodemon": "^1.12.1",
     "vision": "^5.1.0"

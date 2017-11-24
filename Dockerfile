@@ -9,7 +9,7 @@ ADD https://github.com/google/protobuf/releases/download/v3.3.0/protoc-3.3.0-lin
 ADD . /app
 WORKDIR /app
 RUN apt-get -q -y update
-RUN apt-get -q -y install unzip curl sudo git vim golang
+RUN apt-get -q -y install zip unzip curl sudo git vim golang
 
 ####################
 # protoc
@@ -35,7 +35,7 @@ RUN cp protoc-gen-doc-1.0.0.linux-amd64.go1.3.3/protoc-gen-doc ../bin/protoc-gen
 ####################
 # build
 WORKDIR /app
-RUN mkdir -p doc
+RUN mkdir -p doc/pb/php doc/pb/js
 RUN [ ! -f .server.js.remote ] || cp .server.js.remote server.js
 RUN pkglen=$(cat package.json | grep '"name": "protodoc-server"' | wc -m | xargs echo -n) && [ "$pkglen" -gt "1" ] 2>/dev/null || rm package.json
 RUN [ ! -f .package.json.remote ] || cp .package.json.remote package.json
