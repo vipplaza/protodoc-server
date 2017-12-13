@@ -41,12 +41,12 @@ RUN pkglen=$(cat package.json | grep '"name": "protodoc-server"' | wc -m | xargs
 RUN [ ! -f .package.json.remote ] || cp .package.json.remote package.json
 
 RUN npm i
-RUN npm run build:js
-RUN npm run build:php
 RUN npm run build:proto
 
 WORKDIR /app/proto
 RUN npm run build:doc
+RUN npm run build:js
+RUN npm run build:php
 WORKDIR /app
 
 CMD npm start
