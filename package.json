@@ -11,6 +11,7 @@
     "build:doc": "protoc --doc_out=./doc --doc_opt=html,index.html proto/*.proto --plugin=protoc-gen-doc=./bin/protoc-gen-doc",
     "build:js": "protoc --js_out=import_style=commonjs,binary:./doc/pb/js/ ./proto/*.proto ./proto/**/*.proto && zip -r doc/js.zip doc/pb/js",
     "build:php": "protoc --php_out=./doc/pb/php ./proto/*.proto ./proto/**/*.proto && zip -r doc/php.zip doc/pb/php",
+    "build:proto": "zip -r doc/proto.zip proto",
     "start": "node server.js"
   },
   "bin": {

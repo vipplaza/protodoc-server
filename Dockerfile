@@ -44,6 +44,7 @@ RUN npm i
 RUN npm run build:doc
 RUN npm run build:js
 RUN npm run build:php
+RUN npm run build:proto
 
 CMD npm start
 #ENTRYPOINT ["tail", "-f", "/dev/null"]

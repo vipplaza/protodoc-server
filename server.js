@@ -16,6 +16,9 @@ const jsHandler = (request, reply) => {
 const phpHandler = (request, reply) => {
   return reply.file('./doc/php.zip')
 };
+const protoHandler = (request, reply) => {
+  return reply.file('./doc/proto.zip')
+};
 
 const provision = async () => {
 
@@ -33,6 +36,7 @@ const provision = async () => {
         { method: 'GET', path: '/documentation', handler: rootHandler },
         { method: 'GET', path: '/js', handler: jsHandler },
         { method: 'GET', path: '/php', handler: phpHandler },
+        { method: 'GET', path: '/proto', handler: protoHandler },
     ]);
 
     await server.start();
