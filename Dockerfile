@@ -44,9 +44,9 @@ RUN npm i
 RUN npm run build:proto
 
 WORKDIR /app/proto
-RUN npm run build:doc
-RUN npm run build:js
-RUN npm run build:php
+RUN protoc --doc_out=../doc --doc_opt=html,index.html *.proto --plugin=protoc-gen-doc=../bin/protoc-gen-doc
+RUN protoc --js_out=import_style=commonjs,binary:./doc/pb/js/ ./*.proto ./**/*.proto && zip -r doc/js.zip doc/pb/js
+RUN protoc --php_out=./doc/pb/php ./*.proto ./**/*.proto && zip -r doc/php.zip doc/pb/php
 WORKDIR /app
 
 CMD npm start
