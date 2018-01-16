@@ -1,10 +1,13 @@
 up(){
   touch Dockerfile
+  echo 'node_modules/*\n!*/protodoc-server' > .dockerignore
   mkdir -p ./node_modules/protodoc-server/doc
 }
 down(){
-  c=$(wc -c <Dockerfile)
-  [[ $c -lt '1' ]] || rm Dockerfile
+  dfempty=$(wc -c <Dockerfile | xargs)
+  [[ $dfempty -lt '1' ]] || rm Dockerfile
+  dicontent=$(cat .dockerignore | xargs)
+  [[ $dicontent != 'node_modules' ]] || rm .dockerignore
   [[ ! -f .package.json.remote ]] || rm .package.json.remote
   [[ ! -f .server.js.remote ]] || rm .server.js.remote
 }
